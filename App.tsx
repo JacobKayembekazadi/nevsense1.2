@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { GoogleGenAI } from "@google/genai";
 import { PageStage, type AnalysisResult, type LeadData, type FormData } from './types';
@@ -15,7 +14,7 @@ import ErrorDisplay from './components/ErrorDisplay';
 // Ensure API_KEY is available. In a real build, this would be set in the environment.
 // For this environment, we expect it to be globally available or set via a .env file.
 // If process.env.API_KEY is not set, the app will show an error.
-const API_KEY = process.env.API_KEY;
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 
 const App: React.FC = () => {

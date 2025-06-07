@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { type AnalysisResult, type LeadData } from '../types';
 import Button from './common/Button';
@@ -6,6 +5,7 @@ import Card from './common/Card';
 import { CheckCircleIcon } from './icons/CheckCircleIcon';
 import { XCircleIcon } from './icons/XCircleIcon';
 import ScoreGauge from './ScoreGauge';
+import jsPDF from 'jspdf';
 
 interface ReportPreviewProps {
   result: AnalysisResult;
@@ -31,6 +31,11 @@ const DetailSection: React.FC<{ title: string; items: string[]; type: 'positive'
 );
 
 const ReportPreview: React.FC<ReportPreviewProps> = ({ result, leadData, onStartOver }) => {
+  // Make report data available globally for PDF download
+  if (typeof window !== 'undefined') {
+    (window as any).__NAVSENSE_REPORT__ = { analysisResult: result, leadData };
+  }
+
   return (
     <Card>
       <div className="text-center">
